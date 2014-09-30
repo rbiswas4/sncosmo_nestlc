@@ -499,7 +499,7 @@ def fit_lc(data, model, param_names, bounds=None, method='minuit',
 #    return res
 
 
-def _nest_lc(data, model, param_names, modelcov, 
+def _nest_lc(data, model, param_names, modelcov,
              bounds=None, priors=None, ppfs=None, tied=None,
              nobj=100, maxiter=10000, verbose=False):
     """Assumes that data has already been standardized.
@@ -555,10 +555,10 @@ def _nest_lc(data, model, param_names, modelcov,
 
     def loglikelihood(parameters):
         model.parameters[idx] = parameters
-        #mflux = model.bandflux(data['band'], data['time'],
+        # mflux = model.bandflux(data['band'], data['time'],
         #                       zp=data['zp'], zpsys=data['zpsys'])
-        #chisq = np.sum(((data['flux'] - mflux) / data['fluxerr'])**2
-	return - chisq(data, model, modelcov=modelcov)/2.0
+        # chisq = np.sum(((data['flux'] - mflux) / data['fluxerr'])**2
+        return - chisq(data, model, modelcov=modelcov)/2.0
 
     res = nest.nest(loglikelihood, prior, npar, nipar, nobj=nobj,
                     maxiter=maxiter, verbose=verbose)
@@ -605,7 +605,7 @@ def nest_lc(data, model, param_names, bounds, guess_amplitude_bound=False,
     maxiter : int, optional
         Maximum number of iterations. Default is 10000.
     modelcov : bool, optional
-	Include model covariance when calculating chisq. Default is False.
+        Include model covariance when calculating chisq. Default is False.
     verbose : bool, optional
 
     Returns
